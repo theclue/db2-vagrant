@@ -13,6 +13,8 @@ rm v10.5fp1_linuxx64_expc.tar.gz
 # Launch the installer
 /tmp/expc/db2_install -n -b /opt/ibm/db2/V10.5  -p expc
 
+rm -r /tmp/expc/
+
 # Groups
 /usr/sbin/groupadd -g 510 db2grp1
 /usr/sbin/groupadd -g 511 db2fgrp1
@@ -46,7 +48,6 @@ sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2COMM=tcpip
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2_EXTENDED_OPTIMIZATION=ON
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2_DISABLE_FLUSH_LOG=ON
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set AUTOSTART=YES
-sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2_STRIPED_CONTAINERS=ON
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2_HASH_JOIN=Y
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2_PARALLEL_IO=*
 sudo -u db2inst1 /home/db2inst1/sqllib/adm/db2set DB2CODEPAGE=1208
