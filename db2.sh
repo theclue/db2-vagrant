@@ -4,20 +4,20 @@
 yum update -y
 
 yum install -y wget nfs-utils libaio* ksh
-yum install -y compat-libstdc++* libstdc++* numactl-2.0.7-8.el6.x86_64
+yum install -y compat-libstdc++* libstdc++* numactl.x86_64
 yum install -y pam.i686
 
+cp /vagrant/v10.5fp1_linuxx64_expc.tar.gz /tmp
 cd /tmp
-wget -q https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-idZeM1Ka_ueEdfT9PbygBCH4Mq80EwDw4GA/Xc.db2_v105/expc/v10.5fp1_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7563769/Xi.swg-db2expressc/XY.regsrvs/XZ.ncy2SWNMhJrLG4x1AhB9mFwYPDI/v10.5fp1_linuxx64_expc.tar.gz
 
 tar -xvf v10.5fp1_linuxx64_expc.tar.gz
 
-rm v10.5fp1_linuxx64_expc.tar.gz
+rm -f v10.5fp1_linuxx64_expc.tar.gz
 
 # Launch the installer
 /tmp/expc/db2_install -n -b /opt/ibm/db2/V10.5  -p expc
 
-rm -r /tmp/expc/
+rm -r -f /tmp/expc/
 
 # Groups
 /usr/sbin/groupadd -g 510 db2grp1

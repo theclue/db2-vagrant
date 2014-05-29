@@ -37,6 +37,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     master.vm.provision :shell, :path => "provision_for_mount_disk.sh"
-    master.vm.provision :shell, :path => "db2.sh", :args => "#{ibmUsername} #{ibmPassword}"
+    master.vm.provision :shell, :path => "db2.sh"
   end
 end
