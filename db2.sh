@@ -1,10 +1,14 @@
 #!/bin/bash
-yum install -y wget compat-libstdc++* nfs-utils libaio* ksh libstdc++* pam-1.1.1-17.el6.i686 numactl-2.0.7-8.el6.x86_64
+
+# This is needed because we must sync 64 bit packages to 32 bit ones
+yum update -y
+
+yum install -y wget nfs-utils libaio* ksh
+yum install -y compat-libstdc++* libstdc++* numactl-2.0.7-8.el6.x86_64
+yum install -y pam.i686
 
 cd /tmp
-wget --save-cookies cookies.txt --keep-session-cookies --delete-after --post-data="userID=$1&password=$2&fromURL=/webapp/iwm/web/reg/pick.do?source=swg-db2expressc&amp;S_PKG=dllinux64&amp;S_TACT=100KG28W&amp;lang=en_US" O- "https://www14.software.ibm.com/webapp/iwm/web/reg/acceptLogin.do?source=swg-db2expressc&S_PKG=dllinux64&S_TACT=100KG28W&lang=en_US" &> /dev/null
-wget -q --load-cookies cookies.txt https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-idZeM1Ka_ueEdfT9PbygBCH4Mq80EwDw4GA/Xc.db2_v105/expc/v10.5fp1_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7563769/Xi.swg-db2expressc/XY.regsrvs/XZ.ncy2SWNMhJrLG4x1AhB9mFwYPDI/v10.5fp1_linuxx64_expc.tar.gz
-rm cookies.txt
+wget -q https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-idZeM1Ka_ueEdfT9PbygBCH4Mq80EwDw4GA/Xc.db2_v105/expc/v10.5fp1_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7563769/Xi.swg-db2expressc/XY.regsrvs/XZ.ncy2SWNMhJrLG4x1AhB9mFwYPDI/v10.5fp1_linuxx64_expc.tar.gz
 
 tar -xvf v10.5fp1_linuxx64_expc.tar.gz
 
@@ -28,9 +32,6 @@ rm -r /tmp/expc/
 /usr/sbin/useradd -g db2grp1 -m -d /home/db2inst1 db2inst1 -p db2inst1
 /usr/sbin/useradd -g db2fgrp1 -m -d /home/db2fenc1 db2fenc1 -p db2fenc1
 /usr/sbin/useradd -g dasadm1 -m -d /home/dasusr1 dasusr1 -p dasusr1
-
-# Add default vagrant user to db2dev group
-/usr/sbin/usermod -G db2dev vagrant
 
 # Instance
 /opt/ibm/db2/V10.5/instance/db2icrt -a SERVER -p 50000 -u db2fenc1 db2inst1
