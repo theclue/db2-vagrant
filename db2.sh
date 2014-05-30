@@ -29,9 +29,10 @@ rm -r -f /tmp/expc/
 
 
 # Users
-/usr/sbin/useradd -g db2grp1 -m -d /home/db2inst1 db2inst1 -p db2inst1
-/usr/sbin/useradd -g db2fgrp1 -m -d /home/db2fenc1 db2fenc1 -p db2fenc1
-/usr/sbin/useradd -g dasadm1 -m -d /home/dasusr1 dasusr1 -p dasusr1
+/usr/sbin/useradd -p db2inst1 -g db2grp1 -m -d /home/db2inst1 db2inst1
+/usr/sbin/useradd -p db2fenc1 -g db2fgrp1 -m -d /home/db2fenc1 db2fenc1
+/usr/sbin/useradd -p dasusr1 -g dasadm1 -m -d /home/dasusr1 dasusr1
+/usr/sbin/useradd -p db2dev -g db2dev -m -d /home/db2user db2user
 
 # Instance
 /opt/ibm/db2/V10.5/instance/db2icrt -a SERVER -p 50000 -u db2fenc1 db2inst1
