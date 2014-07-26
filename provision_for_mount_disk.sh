@@ -1,4 +1,5 @@
 #!/bin/bash
+mv /opt/VBoxGuestAdditions-4.3.6/ /tmp/
 yum install -y parted
 
 parted /dev/sdb mklabel msdos
@@ -18,3 +19,5 @@ mount /dev/sdb1 /opt
 chmod 777 /opt
 
 echo '/dev/sdb1 /opt ext4 defaults 0 0' >> /etc/fstab
+
+mv /tmp/VBoxGuestAdditions-4.3.6/ /opt/
