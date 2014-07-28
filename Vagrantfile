@@ -18,15 +18,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos65-x86_64-20140116"
   config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.4.2/centos64-x86_64-20140116.box"
   config.vm.define "db2-express" do |master|
-    master.vm.network :public_network, :bridge => 'eth0'
-    master.vm.network :private_network, ip: "#{privateSubnet}.#{privateStartingIp}", :netmask => "255.255.255.0", virtualbox__intnet: "db2network"
+    master.vm.network :public_network
+    master.vm.network :private_network, ip: "#{privateSubnet}.#{privateStartingIp}", virtualbox__intnet: "db2network"
     master.vm.hostname = "db2-express"
 
     master.vm.provider "vmware_fusion" do |v|
       v.vmx["memsize"]  = "#{ram}"
     end
     master.vm.provider :virtualbox do |v|
-      v.name = master.vm.hostname.to_s
+      v.name = "IBM DB2 Express-C 10.5"
       v.customize ["modifyvm", :id, "--memory", "#{ram}"]
       file_to_disk = File.realpath( "." ).to_s + "/" + v.name + "_secondary_hdd.vdi"
       if ARGV[0] == "up" && ! File.exist?(file_to_disk)
