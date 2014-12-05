@@ -8,6 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 ram = 2048                            # Ram in MB for each VM
 secondaryStorage = 80                 # Size in GB for the secondary virtual HDD
 privateNetworkIp = "10.10.10.50"      # IP for the private network between VMs
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 
 # Do not edit below this line
 # --------------------------------------------------------------
